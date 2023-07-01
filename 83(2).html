@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drag to Draw Circles</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="400" height="400"></canvas>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		var isDrawing = false;
+
+		canvas.addEventListener("mousedown", function(e) {
+			isDrawing = true;
+			ctx.beginPath();
+			ctx.arc(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop, 10, 0, 2 * Math.PI);
+
+		});
+
+		canvas.addEventListener("mousemove", function(e) {
+			if (isDrawing) {
+				ctx.beginPath();
+				ctx.arc(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop, 10, 0, 2 * Math.PI);
+
+			}
+		});
+
+		canvas.addEventListener("mouseup", function(e) {
+			isDrawing = false;
+		});
+	</script>
+</body>
+</html>
